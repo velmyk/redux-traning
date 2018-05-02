@@ -1,6 +1,6 @@
 // import * as counterActionTypes from './counterActionTypes';
 
-const userReducer = (state = {}, action) => {
+const userReducer = (state = { isLoading: false }, action) => {
     switch (action.type) {
         case 'USER_REQUEST_STARTED':
             return {

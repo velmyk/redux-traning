@@ -20,20 +20,22 @@ const mapStateToProps = state => {
 	};
 };
 
-// const mapDispatchToProps = {
-//     increment: counterActions.incrementAction,
-//     decrement: counterActions.decrementAction
+const mapDispatchToProps = {
+    increment: counterActions.incrementAction,
+    decrement: counterActions.decrementAction
+};
+
+
+// const mapDispatchToProps = dispatch => {
+    
+// 	const actionCreatorsForThisComponent = {
+// 		increment: counterActions.incrementAction,
+// 		decrement: counterActions.decrementAction
+// 	};
+
+// 	return bindActionCreators(actionCreatorsForThisComponent, dispatch);
 // };
 
-const mapDispatchToProps = dispatch => {
-    
-	const actionCreatorsForThisComponent = {
-		increment: counterActions.incrementAction,
-		decrement: counterActions.decrementAction
-	};
-
-	return bindActionCreators(actionCreatorsForThisComponent, dispatch);
-};
 
 const connector = connect(mapStateToProps, mapDispatchToProps);
 
@@ -43,6 +45,6 @@ export default connectedComponent;
 
 // function bindActionCreator(actionCreator, dispatch) {
 // 	return function() {
-// 		return dispatch(actionCreator.apply(this, arguments));
+// 		return dispatch(actionCreator(arguments));
 // 	};
 // }

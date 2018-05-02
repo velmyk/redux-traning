@@ -3,9 +3,13 @@ const userObj = {
     email: 'example@email.com'
 };
 
-export const userRequestStarted = () => ({
-    type: 'USER_REQUEST_STARTED',
-});
+export function userRequestStarted() {
+
+    return {
+        type: 'USER_REQUEST_STARTED',
+    };
+
+};
 
 export const userReceivedAction = (userData) => ({
     type: 'USER_RECEIVED',
@@ -14,7 +18,16 @@ export const userReceivedAction = (userData) => ({
     }
 });
 
-export const fetchUserAction = () => dispatch => {
-    Promise.resolve(userObj)
-        .then(user => dispatch(userReceivedAction(user)));
+
+export  function fetchUserAction() {
+
+    return function(dispatch) {
+
+        dispatch(userRequestStarted());
+            new Promise(resolve => {
+                setTimeout(() => resolve(userObj), 2000)
+            })
+            .then(user => dispatch(userReceivedAction(user)));
+
+    }
 }

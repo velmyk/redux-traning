@@ -2,21 +2,31 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import * as userActions from './userActions';
 
-const userObj = {
-    name: 'John Doe',
-    email: 'example@email.com'
-};
+// const userObj = {
+//     name: 'John Doe',
+//     email: 'example@email.com'
+// };
 
 class UserInfo extends Component {
 
     loadUser = () => {
-        const { setIsLoading, userDataReceived } = this.props;
+        const {
+            // setIsLoading,
+            // userDataReceived,
+            fetchUserWrappedIntoDispatch
+        } = this.props;
 
-        setIsLoading();
-        new Promise(resolve => {
-            setTimeout(() => resolve(userObj), 2000)
-        })
-            .then(user => userDataReceived(user))
+        fetchUserWrappedIntoDispatch();
+
+        // setIsLoading();
+
+        // new Promise((resolve, reject) => {
+        //     setTimeout(() => resolve({
+        //         name: 'John Doe',
+        //         email: 'example@email.com'
+        //     }), 2000)
+        // })
+        //     .then(user => userDataReceived(user));
     }
 
     render() {
@@ -45,6 +55,11 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = {
     userDataReceived: userActions.userReceivedAction,
     setIsLoading: userActions.userRequestStarted,
+    fetchUserWrappedIntoDispatch: userActions.fetchUserAction
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(UserInfo);
+
+// function fetchUser() {
+//     dispatch(userActions.fetchUserAction())
+// }
