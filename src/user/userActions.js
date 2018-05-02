@@ -3,11 +3,11 @@ const userObj = {
     email: 'example@email.com'
 };
 
-const userRequestStarted = () => ({
+export const userRequestStarted = () => ({
     type: 'USER_REQUEST_STARTED',
 });
 
-const userReceived = (userData) => ({
+export const userReceivedAction = (userData) => ({
     type: 'USER_RECEIVED',
     payload: {
         user: userData
@@ -16,5 +16,5 @@ const userReceived = (userData) => ({
 
 export const fetchUserAction = () => dispatch => {
     Promise.resolve(userObj)
-        .then(user => dispatch(userReceived(user)));
+        .then(user => dispatch(userReceivedAction(user)));
 }
